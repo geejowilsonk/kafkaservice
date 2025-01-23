@@ -8,24 +8,24 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- Spring Boot Starter --><dependency>
+
+        <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter</artifactId>
-        <version>2.7.10</version> <!-- Or 3.x if you use Spring Boot 3 -->
+        <version>2.7.10</version>
     </dependency>
 
-        <!-- Spring Kafka -->
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-            <version>2.9.0</version> <!-- Ensure compatibility with your Spring Boot version -->
+            <version>2.9.0</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20230227</version> <!-- Latest version -->
+            <version>20230227</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -33,16 +33,54 @@
             <version>2.7.10</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+            <version>3.5.1</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.7.10</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>4.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams-test-utils</artifactId>
+            <version>3.4.0</version> <!-- Use the version matching your Kafka Streams version -->
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Spring Boot Maven Plugin with version specified -->
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.1.4</version> <!-- Replace with the version you're using -->
+                <version>3.1.4</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -55,7 +93,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.7.0</version> <!-- Or use the latest version -->
+                <version>2.7.0</version>
             </plugin>
         </plugins>
     </build>

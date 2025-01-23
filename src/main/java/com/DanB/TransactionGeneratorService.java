@@ -16,7 +16,11 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 /**
- * This is the Kafka producer class.
+ * This class serve as ServiceA.
+ * This Microservice application is responsible for producing 1 message per second.
+ * Here I thought of generating transactions with random mock account number with the amount of transaction.
+ * This eventually will create a message in json format and will be ingested to the kafka topic.
+ * Kafka packages integrated with Spring is used here to achieve this functionality.
  */
 @SpringBootApplication
 public class TransactionGeneratorService implements CommandLineRunner {
@@ -36,7 +40,7 @@ public class TransactionGeneratorService implements CommandLineRunner {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         Random random = new Random();
         scheduler.scheduleAtFixedRate(() -> {
-            // Create a JSON object with "service" and "message" fields
+            // Create a JSON object with "transactionId" and other "message" fields
             JSONObject transaction = new JSONObject();
             transaction.put("transactionId", UUID.randomUUID().toString());
             transaction.put("accountNumber", "ACC" + (100000 + random.nextInt(900000)));
