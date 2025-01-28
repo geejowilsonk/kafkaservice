@@ -83,6 +83,10 @@ The below script will test the performance based on the number of messages consu
 ./kafka_performance_test.sh
 ```
 
+## Kibana Visualization
+- This plot provides the real time debit/Credit percentage values
+ ![img_2.png](img_2.png)
+
 ## Future Possible Enhancements
 - Implement authentication and authorization for the microservices.
 - Scale services dynamically using Kubernetes.
