@@ -87,6 +87,8 @@ The below script will test the performance based on the number of messages consu
 - This plot provides the real time debit/Credit percentage values
  ![img_2.png](img_2.png)
 
+-The below plot provides the average amount transacted in realtime
+   ![img_3.png](img_3.png)
 ## Future Possible Enhancements
 - Implement authentication and authorization for the microservices.
 - Scale services dynamically using Kubernetes.
