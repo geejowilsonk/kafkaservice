@@ -10,6 +10,8 @@ This project demonstrates a Kafka-based microservices architecture designed for 
   - This microservice acts as **ServiceB** which Consumes transactions from Kafka, ingests them into Elasticsearch, and enables the log monitoring  in Kibana.
 - **FraudDetectionService[An enhancement one]**: 
   - This is a kafka streams class which will helps in detecting fraudulent transaction and will insert it to a separate topic.
+  - This makes use of **KStreams** and **KTable**
+  - Transaction topic is joined with accounts_info in real time and then applying business rules to filter out the fradulent transactions.
 
 ## Technologies Used
 - **Programming Language**: Java 
@@ -54,6 +56,7 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic suspicious_tran
 A typical transaction looks like this:
 ```json
 {
+  "key": "ACC123456",
   "transactionId": "123e4567-e89b-12d3-a456-426614174000",
   "accountNumber": "ACC123456",
   "amount": 12000.50,
