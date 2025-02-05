@@ -15,6 +15,10 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Collectors;
+
 /**
  * This class serve as ServiceA.
  * This Microservice application is responsible for producing 1 message per second.
@@ -42,8 +46,14 @@ public class TransactionGeneratorService implements CommandLineRunner {
         scheduler.scheduleAtFixedRate(() -> {
             // Create a JSON object with "transactionId" and other "message" fields
             JSONObject transaction = new JSONObject();
+
+            //Creates account number from 1-100. This will helps in FraudDetection class in efficient join using KTable and KStream
+            List<String> accountNumbers = IntStream.range(100000, 100100)
+                    .mapToObj(num -> "ACC" + num)
+                    .collect(Collectors.toList());
+
             transaction.put("transactionId", UUID.randomUUID().toString());
-            transaction.put("accountNumber", "ACC" + (100000 + random.nextInt(900000)));
+            transaction.put("accountNumber", accountNumbers.get(random.nextInt(accountNumbers.size())));
             transaction.put("amount", random.nextDouble() * 10000);
             transaction.put("transactionType", random.nextBoolean() ? "DEPOSIT" : "WITHDRAWAL");
             transaction.put("unixTime", System.currentTimeMillis());
@@ -54,7 +64,7 @@ public class TransactionGeneratorService implements CommandLineRunner {
 
             // Convert JSON object to string and send it to Kafka
             String transactionMessage = transaction.toString();
-            kafkaTemplate.send("transaction", transactionMessage);
+            kafkaTemplate.send("transaction", transaction.getString("accountNumber"), transactionMessage);
 
             // Log the message for debugging
             System.out.println("Generated transaction: " + transactionMessage);
